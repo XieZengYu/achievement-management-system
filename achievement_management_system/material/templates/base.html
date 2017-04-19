@@ -4,32 +4,119 @@
 <html>
 <head>
     <meta charset='utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href={% static "css/init.css" %}>
-    <link rel="stylesheet" type="text/css" href={% static "css/desktop/head_menu.css" %}>
-    <link rel="stylesheet" type="text/css" href={% static "css/desktop/head_search.css" %}>
-    <link rel="stylesheet" type="text/css" href={% static "css/desktop/fooder.css" %}>
-    {% block css %}{% endblock %}
+<!--     <link rel="stylesheet" type="text/css" href={% static "css/init.css" %}> -->
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap-theme.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap-theme.min.css" %}>
+    <script type="text/javascript" src={% static "js/jquery-3.2.1.min.js" %}></script>
+    <script type="text/javascript" src={% static "js/bootstrap.min.js" %}></script>
+    
 </head>
 <style>
-
+body{
+    background: #777;
+}
+.container{
+    background: #777;
+}
+.jumbotron span{
+    float: left;
+}
+.wlc{
+    display: inline;
+    font-size:16px;
+    position: absolute;
+    right: 25px;
+    bottom: 35px;
+}
+.link_c{
+    color: #222;
+}
+.link_c:visited{
+    color: #555;
+}
+.link_c:hover{
+    color: #777;
+}
+.content{
+    background: #eee;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+    min-height: 650px;
+}
+{% block css %}{% endblock %}
 </style>
-<body>  
-    <div class="header">
-        <div class="header_menu">
-            <div class="menu">
-                <ul class="menu_left">
-                    <a href="/"><li><img src={% static "img/desktop/font_homepage.png" %}></li></a>
-                    <a href="{% url "sting_list" %}"><li><img src={% static "img/desktop/font_used.png" %}></li></a>
-                </ul>
-                <div class="menu_right">
-                    <a href="{% url "comb_login" %}"><div class="menu_right_login"></div></a>
-                    <a href="{% url "comb_join" %}"><div class="menu_right_register"></div></a>
+<body>
+    <div class="container">
+        <div class="row clearfix" style="margin-top: 15px;">
+            <div class="col-md-12 column">
+                <div class="jumbotron">
+                    <h1 style="margin-top: 0px;"><span class="glyphicon glyphicon-cog" style="color: rgb(0, 32, 14);"></span>
+                        成绩管理系统
+                    </h1>
+                    <div class="wlc hidden-xs hidden-sm">
+                        <span>阿萨斯同学，欢迎 <a class="link_c" href="#">修改密码</a> / <a class="link_c" href="#">注销</a></span>
+                        {% if sign == 1 %}
+                        <span>同学，欢迎 <a class="link_c" href="#">修改密码</a> / <a class="link_c" href="#">注销</a></span>
+                        {% endif %}
+                        {% if sign == 2 %}
+                        <span>老师，欢迎 <a class="link_c" href="#">修改密码</a> / <a class="link_c" href="#">注销</a></span>
+                        {% endif %}
+                        {% if sign == 3 %}
+                        <span>管理员，你好</span>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="all">
-        <div class="content">{% block body %}{% endblock %}</div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><strong>成绩管理系统</strong></a>
+                    </div>
+                    
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                 <a href="#">Link</a>
+                            </li>
+                            <li>
+                                 <a href="#">Link</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">ssadasd</a></li>
+                                    <li><a href="#">asdsadsad</a></li>
+                                    <li><a href="#">asdasdasd</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>          
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+        {% block body %}sdf{% endblock %}
+        </div>
+    </div>  
 </body>
 </html>

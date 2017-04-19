@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from admin_operation.views import *
-
+from user_management.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^upload_test/', userimport),
+    url(r'^base/', base),
+    url(r'^login/', login),
+    url(r'^upload_1/', userimport,name="userimport"),
+    url(r'^upload_2/', courseimport,name="courseimport"),
+    url(r'^upload_3/', scoreimport,name="scoreimport"),
+
+
 ]
