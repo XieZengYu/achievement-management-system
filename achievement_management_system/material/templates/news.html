@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div style="color: red;font-size: 30px;">{{news_list.title}}</div>
+	<div style="color: gray;font-size: 10px;">{{news_list.timestamp}}</div>
+	<div style="font-size: 14px;">{{news_list.content}}</div>
+{% endblock %}

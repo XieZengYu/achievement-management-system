@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}个人信息{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div>
+		
+		<form action="" enctype="multipart/form-data" method="POST">
+			{{forms.as_p}}	
+		</form>
+	</div>
+	{% if alert %}
+		<script type="text/javascript">
+			(function(){
+				alert("修改成功！");
+			}());
+		</script>
+	{% endif %}
+{% endblock %}

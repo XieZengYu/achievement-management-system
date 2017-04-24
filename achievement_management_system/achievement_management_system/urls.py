@@ -17,14 +17,24 @@ from django.conf.urls import url
 from django.contrib import admin
 from admin_operation.views import *
 from user_management.views import *
+from teacher_operation.views import *
+from student_operation.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^base/', base),
-    url(r'^login/', login),
+    url(r'^login/', login,name="login"),
+    url(r'^index/', index,name="index"),
+    url(r'^news/(\d+)/$', news,name="news"),
+    url(r'^update/(?P<pk>\d+)/', PersonUpdate.as_view(),name="update"),
+    url(r'^t_update/(?P<pk>\d+)/$', TeacherUpdate.as_view(),name="t_update"),
+    url(r'^changepassword/', ChangePassword,name="changepwd"),
+    #url(r'^Course/', news,name="news"),
+    #url(r'^Score/', news,name="news"),
+    #url(r'^Analyze/', news,name="news"),
+    url(r'^upload_c/', campusinfo,name="campusinfo"),
     url(r'^upload_1/', userimport,name="userimport"),
     url(r'^upload_2/', courseimport,name="courseimport"),
     url(r'^upload_3/', scoreimport,name="scoreimport"),
-
+    url(r'^upload_t/', t_scoreimport,name="t_scoreimport"),
 
 ]

@@ -60,7 +60,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'material/templates')
+            os.path.join(BASE_DIR, 'material/templates'),
+
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,3 +136,10 @@ AUTH_PROFILE_MODULE = 'user_management.UserProfile'
 MEDIA_ROOT = 'material/upload'
 
 admin.site.site_header = '成绩管理系统'
+
+
+#sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_SAVE_EVERY_REQUEST = True
+#SESSION_COOKIE_AGE = 300
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

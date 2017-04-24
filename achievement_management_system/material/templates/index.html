@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+<div>
+	<div class="list-group">
+		<a href="#" class="list-group-item active">校园新闻</a>
+		{% for contact in contacts %}
+		<a href="{% url 'news' contact.id %}" class="list-group-item">{{ contact.title }}</a>
+		{% endfor %}
+	</div>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			{% if contacts.has_previous %}
+			<li>
+			<a href="?page={{ contacts.previous_page_number }}" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+			</a>
+			</li>
+			{% else %}
+			<li class="disabled">
+			<a href="#" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+			</a>
+			</li>
+			{% endif %}
+			{% for page in contacts.paginator.page_range %}
+				{% if page == contact.number %}
+				<li class="active"><a href="#">{{page}}</a></li>
+				{% else %}
+				<li><a href="?page={{page}}">{{page}}</a></li>
+				{% endif %}
+			{% endfor %}
+			{% if contacts.has_next %}
+			<li>
+			<a href="?page={{ contacts.next_page_number }}" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+			</a>
+			</li>
+			{% else %}
+			<li class="disabled">
+			<a href="#" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+			</a>
+			</li>
+			{% endif %}
+		</ul>
+	</nav>
+</div>
+{% endblock %}

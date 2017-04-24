@@ -27,7 +27,11 @@
 	margin-top:20px;
 	margin-left:15px;
 }
-
+#juzhong{
+	width:272px;
+	margin:100px auto 50px auto;
+	padding:20px 20px 20px 20px;
+}
 {% endblock %}
 
 {% block body %}
@@ -42,20 +46,16 @@
 		<div class="clear"></div>
 	</div>
 
-	<div class="formstl form-group">
+	<div id="juzhong" class="formstl form-group">
 		<form id="courseimp" action="" method="post" enctype="multipart/form-data">
 		<input id="coursei" type="file" name="xlsfile" />
 		<input class="btn btn-default" type="submit" value="上传文件" style="margin-top: 25px;margin-left: 35px;" />
 		</form>
+		{% if sign2 %}
+			<div style="margin-left: 75px;margin-top: 30px;">
+				<p style="font-size: 20px;color: #337ab7">上传成功！</p>
+			</div>
+		{% endif %}
 	</div>
-	{% if data %}
-	<ul>
-		{% for d in data %}
-			<li>{{ d }}</li>
-		{% endfor %}
-	</ul>
-	{% else %}
-		<p>Please upload a correct attachment.</p>
-	{% endif %}
 
 {% endblock %}

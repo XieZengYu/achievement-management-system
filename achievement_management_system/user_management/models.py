@@ -2,32 +2,6 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 # Create your models here.
 
-# class UserProfile(models.Model):
-# 	USER_TEACHER = 0
-# 	USER_STUDENT = 1
-# 	USER_CHOICES = (
-# 		(USER_TEACHER, '教师'),
-# 		(USER_STUDENT, '学生'),
-# 	)
-
-# 	GENDER_MAN = 0
-# 	GENDER_WOMAN = 1
-# 	GENDER_CHOICES = (
-# 		(GENDER_MAN, '男'),
-# 		(GENDER_WOMAN, '女'),
-# 	)
-
-# 	user = models.OneToOneField(User)
-# 	name = models.CharField(max_length=30,verbose_name='姓名')
-# 	gender = models.IntegerField(choices=GENDER_CHOICES, default=None,verbose_name='姓别')
-# 	grade = models.CharField(max_length=30,verbose_name='年级')
-# 	the_class = models.CharField(max_length=30,verbose_name='班级')
-# 	department = models.CharField(max_length=30,verbose_name='系别')
-# 	phone_num = models.CharField(max_length=12,blank=True,verbose_name='联系电话')
-# 	address = models.TextField(max_length=140, blank=True,verbose_name='住址')
-# 	identity = models.IntegerField(choices=USER_CHOICES, default=None,verbose_name='身份')
-
-
 class GradeInfo(models.Model):
 	GRADE_1 = 1
 	GRADE_2 = 2
@@ -52,17 +26,17 @@ class GradeInfo(models.Model):
 	DPT_10 = 10
 	DPT_11 = 11
 	DPT_CHOICES = (
-		(DPT_1,'中文系'),
-		(DPT_2,'政法系'),
-		(DPT_3,'外语系'),
-		(DPT_4,'数学系'),
-		(DPT_5,'物理系'),
-		(DPT_6,'化学系'),
-		(DPT_7,'生物系'),
-		(DPT_8,'音乐系'),
-		(DPT_9,'美术系'),
-		(DPT_10,'体育系'),
-		(DPT_11,'计算机系'),
+		(DPT_1,u'中文系'),
+		(DPT_2,u'政法系'),
+		(DPT_3,u'外语系'),
+		(DPT_4,u'数学系'),
+		(DPT_5,u'物理系'),
+		(DPT_6,u'化学系'),
+		(DPT_7,u'生物系'),
+		(DPT_8,u'音乐系'),
+		(DPT_9,u'美术系'),
+		(DPT_10,u'体育系'),
+		(DPT_11,u'计算机系'),
 	)
 	grade = models.IntegerField(choices=GRADE_CHOICES, default=None, blank=True,verbose_name='年级')
 	the_class = models.CharField(max_length=30, blank=True,verbose_name='班级')
@@ -73,7 +47,7 @@ class GradeInfo(models.Model):
 		verbose_name_plural = '系别班级'
 
 	def __str__(self):
-		return self.the_class
+		return "%s%s%s"%(dict(GradeInfo.DPT_CHOICES)[self.department],dict(GradeInfo.GRADE_CHOICES)[self.grade],self.the_class)
 
 class Teacher(models.Model):
 	GENDER_MAN = 0
@@ -95,9 +69,9 @@ class Teacher(models.Model):
 		verbose_name = '教师'
 		verbose_name_plural = '教师'
 
-	def save(self,*args,**kwargs):
-		self.password = make_password(self.password)
-		super(Teacher,self).save(*args,**kwargs)
+	# def save(self,*args,**kwargs):
+	# 	self.password = make_password(self.password)
+	# 	super(Teacher,self).save(*args,**kwargs)
 
 	def __str__(self):
 		return self.name
@@ -123,18 +97,22 @@ class Student(models.Model):
 		verbose_name = '学生'
 		verbose_name_plural = '学生'
 
-	def save(self,*args,**kwargs):
-		self.password = make_password(self.password)
-		super(Student,self).save(*args,**kwargs)
+	# def save(self,*args,**kwargs):
+	# 	self.password = make_password(self.password)
+	# 	super(Student,self).save(*args,**kwargs)
 
 	def __str__(self):
-		return self.name
+		return "%s%s"%(self.grade.the_class,self.name)
 
 class CampusInfo(models.Model):
 	title = models.CharField(max_length=30,verbose_name='标题')
 	content = models.TextField(verbose_name='内容')
-	timestamp = models.DateTimeField(verbose_name='发布时间')
+	timestamp = models.DateTimeField(auto_now=True,verbose_name='发布时间')
 
 	class Meta:
+		ordering = ['-timestamp']
 		verbose_name = '校园资讯'
 		verbose_name_plural = '校园资讯'
+
+	def __str__(self):
+		return self.title

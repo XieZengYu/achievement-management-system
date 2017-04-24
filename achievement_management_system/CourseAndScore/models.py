@@ -1,5 +1,6 @@
 from django.db import models
 from user_management.models import *
+
 # Create your models here.
 class Course(models.Model):
 	CREDIT_1 = 1

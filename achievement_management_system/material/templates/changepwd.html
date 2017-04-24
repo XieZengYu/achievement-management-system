@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+
+<div >
+	<div class="page-header" style="color: #555;">
+		<h2>修改密码<small>&#12288;&#12288;&#12288;{{uname}}</small></h2>
+	</div>
+	<div class="clearfix"></div>
+	<div ></div>
+	<form action="" method="POST" enctype="multipart/form-data" style="width: 50%;margin-left: 20%;">
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1">&#12288;旧密码：</span>
+			<input name="old_pwd" type="text" class="form-control" placeholder="旧密码" aria-describedby="sizing-addon1" required="required">
+		</div>
+		<div style="height: 50px;margin: 2px auto;">
+			{% if old_e %}
+				<div class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error</span>
+					旧密码输入错误！
+				</div>
+			{% endif %}	
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1">&#12288;新密码：</span>
+			<input name="new_pwd" type="text" class="form-control" placeholder="新密码" aria-describedby="sizing-addon1" required="required">
+		</div>
+		<div style="height: 50px;margin: 4px auto;">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1">密码确认：</span>
+			<input name="con_pwd" type="text" class="form-control" placeholder="密码确认" aria-describedby="sizing-addon1" required="required">
+		</div>
+		
+		<div style="height: 50px;margin: 4px auto;">
+			{% if new_e %}
+				<div class="alert alert-danger" role="alert" style="height: 50px;">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error</span>
+					新密码确认失败，两次输入不一致！
+				</div>
+			{% endif %}
+		</div>
+		<input type="submit" class="btn btn-default" style="float: right;" value="密码修改" />
+		<div class="clearfix"></div>
+		{% if suc %}
+		<div class="alert alert-success" role="alert" style="margin-top: 5px;">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			<span class="sr-only">Success</span>
+			密码修改成功！
+		</div>
+		{% endif %}
+	</form>
+</div>
+{% endblock %}

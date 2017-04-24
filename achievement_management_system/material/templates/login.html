@@ -17,19 +17,17 @@
 	<h1>成绩管理系统</h1>
 	<h2>Log in to your Account</h2>
 	<div class="w3layoutscontaineragileits">
-		<form action="#" method="post">
-			<input type="text" Name="Userame" placeholder="ACCOUNT" required="">
-			<input type="password" Name="Password" placeholder="PASSWORD" required="">
-			<!-- <ul class="agileinfotickwthree">
-				<li>
-					<input type="checkbox" id="brand1" value="">
-					<label for="brand1"><span></span>Remember me</label>
-				</li>
-			</ul> -->
+		<form action="" method="post">
+			<input type="text" name="Userame" placeholder="ACCOUNT" required="required" >
+			<input type="password" name="Password" placeholder="PASSWORD" required="required" >
 			<div class="aitssendbuttonw3ls" style="	margin-top: 20px;">
 				<input type="submit" value="LOGIN">
-<!-- 				<p><a href="#">REGISTER NEW ACCOUNT <span>→</span></a></p> -->
 				<div class="clear"></div>
+				{% if pwd_wrong %}
+				<div style="color: #e7c3c3;margin-top: 30px;">
+					<h4>账号或密码错误，请重试！</h4>
+				</div>
+				{% endif %}
 			</div>
 		</form>
 	</div>
