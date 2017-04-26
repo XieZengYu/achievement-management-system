@@ -10,7 +10,7 @@ from django.views.generic.edit import UpdateView
 
 class TeacherUpdate(UpdateView):
 	model = Teacher
-	fields = ['gender','grade','phone_num','address']
+	fields = ['gender','department','phone_num','address']
 	template_name_suffix  =  '_update'
 	success_url = '/index/'
 

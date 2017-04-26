@@ -101,13 +101,13 @@ body{
                                 <a href="{% url 'update' u_id %}">个人信息</a>
                             </li>
                             <li>
-                                <a href="#">课程</a>
+                                <a href="{% url 'course' %}">课程</a>
                             </li>
                             <li>
-                                <a href="#">成绩</a>
+                                <a href="{% url 'score' %}">成绩</a>
                             </li>
                             <li>
-                                <a href="#">统计分析</a>
+                                <a href="{% url 'analyze' %}">统计分析</a>
                             </li>
                         </ul>
                     </div>
@@ -138,17 +138,17 @@ body{
                                 <a href="{% url 't_update' pk=u_id %}">个人信息</a>
                             </li>
                             <li>
-                                <a href="#">课程</a>
+                                <a href="{% url 'course' %}">课程</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">成绩<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">学生成绩</a></li>
+                                    <li><a href="{% url 'score' %}">学生成绩</a></li>
                                     <li><a href="{% url 't_scoreimport' %}">成绩上传</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">统计分析</a>
+                                <a href="{% url 'analyze' %}">统计分析</a>
                             </li>
                         </ul>
                     </div>  

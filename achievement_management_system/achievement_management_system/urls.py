@@ -19,6 +19,8 @@ from admin_operation.views import *
 from user_management.views import *
 from teacher_operation.views import *
 from student_operation.views import *
+from CourseAndScore.views import *
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,9 +30,9 @@ urlpatterns = [
     url(r'^update/(?P<pk>\d+)/', PersonUpdate.as_view(),name="update"),
     url(r'^t_update/(?P<pk>\d+)/$', TeacherUpdate.as_view(),name="t_update"),
     url(r'^changepassword/', ChangePassword,name="changepwd"),
-    #url(r'^Course/', news,name="news"),
-    #url(r'^Score/', news,name="news"),
-    #url(r'^Analyze/', news,name="news"),
+    url(r'^Course/', course,name="course"),
+    url(r'^Score/', score,name="score"),
+    url(r'^Analyze/', analyze,name="analyze"),
     url(r'^upload_c/', campusinfo,name="campusinfo"),
     url(r'^upload_1/', userimport,name="userimport"),
     url(r'^upload_2/', courseimport,name="courseimport"),

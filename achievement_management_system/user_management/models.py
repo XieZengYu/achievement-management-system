@@ -57,13 +57,38 @@ class Teacher(models.Model):
 		(GENDER_WOMAN, '女'),
 	)
 
+	DPT_1 = 1
+	DPT_2 = 2
+	DPT_3 = 3
+	DPT_4 = 4
+	DPT_5 = 5
+	DPT_6 = 6
+	DPT_7 = 7
+	DPT_8 = 8
+	DPT_9 = 9
+	DPT_10 = 10
+	DPT_11 = 11
+	DPT_CHOICES = (
+		(DPT_1,u'中文系'),
+		(DPT_2,u'政法系'),
+		(DPT_3,u'外语系'),
+		(DPT_4,u'数学系'),
+		(DPT_5,u'物理系'),
+		(DPT_6,u'化学系'),
+		(DPT_7,u'生物系'),
+		(DPT_8,u'音乐系'),
+		(DPT_9,u'美术系'),
+		(DPT_10,u'体育系'),
+		(DPT_11,u'计算机系'),
+	)
+
 	account = models.CharField(max_length=15,unique = True,verbose_name='帐号')
 	password = models.CharField(max_length=15,verbose_name='密码')
 	name = models.CharField(max_length=30,verbose_name='姓名')
 	gender = models.IntegerField(choices=GENDER_CHOICES, default=None,verbose_name='姓别')
-	grade = models.ManyToManyField(GradeInfo,related_name='gradeclass_t',verbose_name='年级班级')
+	department = models.IntegerField(choices=DPT_CHOICES,verbose_name='系别')
 	phone_num = models.CharField(max_length=12,blank=True,verbose_name='联系电话')
-	address = models.TextField(max_length=140, blank=True,verbose_name='住址')
+	address = models.TextField(max_length=340, blank=True,verbose_name='住址')
 
 	class Meta:
 		verbose_name = '教师'

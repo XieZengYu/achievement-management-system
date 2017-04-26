@@ -2,38 +2,33 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from user_management.models import *
-
+from CourseAndScore.models import *
+from CourseAndScore.admin import *
 #ForeignKey
-class StudentInline(admin.TabularInline):
-  	model = Student
+# class StudentInline(admin.TabularInline):
+#   	model = Student
+#   	extra = 1
 
-#ManyToMany
-class GradeInline(admin.TabularInline):
-	model = Teacher.grade.through
+class ScoreInline(admin.TabularInline):
+  	model = Score
+  	extra = 1
 
 class StudentAdmin(admin.ModelAdmin):
-	list_display = ('account','name','gender','grade_grade','grade_department','grade_the_class','phone_num')
-	
-	def grade_grade(self,obj):
-			return obj.grade.grade
-	def grade_department(self,obj):
-			return obj.grade.department
-	def grade_the_class(self,obj):
-			return obj.grade.the_class
-
-	#raw_id_fields =("grade",)
+	list_display = ('account','name','gender','grade','phone_num')
+	inlines = [
+		ScoreInline,
+	]
 
 class TeacherAdmin(admin.ModelAdmin):
-	list_display = ('account','name','gender','phone_num')
+	list_display = ('account','name','gender','department','phone_num')
 	inlines = [
-		GradeInline,
+		CourseInline,
 	]
-	raw_id_fields =("grade",)
 
 class GradeInfoAdmin(admin.ModelAdmin):
 	inlines = [
-		StudentInline,
-		GradeInline,
+		# StudentInline,
+		GradesInline,
 	]
 
 

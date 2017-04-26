@@ -34,6 +34,9 @@ def userimport(request):
 				if check_sign[0] == '1':
 					student_list = list()
 					for i in data:
+						if Student.objects.filter(account=str(int(i[0]))):
+							u_id = 404
+							return render_to_response('user_upload.html',{'sign1':sign1,'account':username,'sign':sign,'uname':uname,'u_id':u_id})
 						grinfo, _ = GradeInfo.objects.get_or_create(
 							grade= str(int(i[4])),
 							the_class= i[5],
@@ -51,25 +54,23 @@ def userimport(request):
 						# import pdb; pdb.set_trace()
 					print(student_list)
 					Student.objects.bulk_create(student_list)
+					sign1 =True
 				else:
 					teacher_list = list()
 					for i in data:
-						grinfo, _ = GradeInfo.objects.get_or_create(
-							grade= str(int(i[4])),
-							the_class= i[5],
-							department= str(int(i[6])),
-						)
-						teacher = Teacher(
+						if Teacher.objects.filter(account=str(int(i[0]))):
+							u_id = 404
+							return render_to_response('user_upload.html',{'sign1':sign1,'account':username,'sign':sign,'uname':uname,'u_id':u_id})
+						teacher_list.append(Teacher(
 							account=str(int(i[0])),
 							password=str(int(i[1])),
 							name=i[2],
 							gender=str(int(i[3])),
-							phone_num=str(int(i[7])),
-							address=i[8],
-						)
-						teacher.save()
-						teacher.grade.add(grinfo)
-						teacher_list.append(teacher)
+							department= str(int(i[4])),
+							phone_num=str(int(i[5])),
+							address=i[6],
+						))
+					Teacher.objects.bulk_create(teacher_list)
 					print(teacher_list)
 					sign1 =True
 		else:
@@ -102,6 +103,9 @@ def courseimport(request):
 				data.pop(0)
 				course_list = list()
 				for i in data:
+					if Course.objects.filter(name=i[0],number=str(int(i[1]))):
+							u_id = 404
+							return render_to_response('course_upload.html',{'sign2':sign2,'account':username,'sign':sign,'uname':uname,'u_id':u_id})
 					grinfo, _ = GradeInfo.objects.get_or_create(
 							grade= str(int(i[4])),
 							the_class= i[5],

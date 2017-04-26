@@ -57,6 +57,11 @@
 			<input id="useri" type="file" name="xlsfile" style="margin-top: 15px;" />
 			<input class="btn btn-default" type="submit" value="上传文件" style="margin-top: 25px;margin-left: 75px;" />
 		</form>
+		{% if u_id == 404 %}
+			<div style="margin-left: 75px;margin-top: 30px;">
+				<p style="font-size: 20px;color: red;">数据有误！</p>
+			</div>
+		{% endif %}
 		{% if sign1 %}
 			<div style="margin-left: 75px;margin-top: 30px;">
 				<p style="font-size: 20px;color: #337ab7">上传成功！</p>

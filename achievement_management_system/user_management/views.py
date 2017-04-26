@@ -32,7 +32,9 @@ def login(request):
 					#sign = 3
 					request.session['sign'] = 3
 					request.session['account'] = username
+					request.session['uname'] = username
 					request.session['login'] = True
+					request.session['u_id'] = username
 					#return render_to_response('index.html',{'account':username,'sign':sign})
 					return HttpResponseRedirect('/index/')
 				else:
@@ -70,7 +72,9 @@ def login(request):
 
 
 def index(request):
+	print('========================================')
 	is_login = request.session.get('login',False)
+	print('========================================')
 	if is_login:
 		sign = request.session["sign"]
 		username = request.session["account"]
