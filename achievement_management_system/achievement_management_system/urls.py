@@ -38,5 +38,6 @@ urlpatterns = [
     url(r'^upload_2/', courseimport,name="courseimport"),
     url(r'^upload_3/', scoreimport,name="scoreimport"),
     url(r'^upload_t/', t_scoreimport,name="t_scoreimport"),
-
+    url(r'^Search_s/', search_s,name="search_s"),
+    url(r'^Search_t/', search_t,name="search_t"),
 ]

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div class="page-header" style="color: #555">
+		<h2>教师查询</h2>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<div class="input-group">
+					<input name="search_s" type="text" class="form-control" placeholder="请输入姓名或编号" required="required" />
+					<span class="input-group-btn">
+					<input class="btn btn-default" type="submit"  value=" 发布 " />
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	{% if pl %}
+		{% if pl == 500 %}
+		<table style="font-size: 18px;margin: 20px 0px;">
+			<tr>
+				<td>工&#12288;&#12288;号：</td>
+				<td>{{s_info.1}}</td>
+			</tr>
+			<tr>
+				<td>姓&#12288;&#12288;名：</td>
+				<td>{{s_info.2}}</td>
+			</tr>
+			<tr>
+				<td>性&#12288;&#12288;别：</td>
+				<td>{{s_info.3}}</td>
+			</tr>
+			<tr>
+				<td>系&#12288;&#12288;别：</td>
+				<td>{{s_info.4}}</td>
+			</tr>
+			<tr>
+				<td>联系电话：</td>
+				<td>{{s_info.5}}</td>
+			</tr>
+			<tr>
+				<td>联系地址：</td>
+				<td>{{s_info.6}}</td>
+			</tr>
+		</table>
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>
+								课程名称
+							</th>
+							<th>
+								课程编号
+							</th>
+							<th>
+								学分
+							</th>
+							<th>
+								班级
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in search %}
+						<tr>
+							<td>
+								{{i.1}}
+							</td>
+							<td>
+								{{i.2}}
+							</td>
+							<td>
+								{{i.3}}
+							</td>
+							<td>
+							{% for e in i.4 %}
+								{{e}}
+							{% endfor %}
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% else %}
+			<div>
+				<h4>
+					查无此人!<br>请检查输入信息！
+				</h4>
+			</div>	
+		{% endif %}
+	{% endif %}
+{% endblock %}
