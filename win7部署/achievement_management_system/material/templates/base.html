@@ -1,0 +1,208 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+<!--     <link rel="stylesheet" type="text/css" href={% static "css/init.css" %}> -->
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap-theme.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/bootstrap-theme.min.css" %}>
+    <script type="text/javascript" src={% static "js/jquery-3.2.1.min.js" %}></script>
+    <script type="text/javascript" src={% static "js/bootstrap.min.js" %}></script> 
+</head>
+<style>
+body{
+    background: #f8f8f8;
+}
+.container{
+    background: #f1f1f1;
+}
+.jumbotron span{
+    float: left;
+}
+.wlc{
+    display: inline;
+    font-size:16px;
+    position: absolute;
+    right: 25px;
+    bottom: 35px;
+}
+.link_c{
+    color: #222;
+}
+.link_c:visited{
+    color: #555;
+}
+.link_c:hover{
+    color: #777;
+}
+.content{
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+    min-height: 650px;
+}
+.top{
+    position: fixed;
+    display: block;
+    right: 25px;
+    bottom: 35px;
+}
+{% block css %}{% endblock %}
+</style>
+<body>
+    <div id="top" class="container">
+        <div class="row clearfix" style="margin-top: 15px;">
+            <div class="col-md-12 column">
+                <div class="jumbotron" style="background: #fff">
+                    <h1 style="margin-top: 0px;"><span class="glyphicon glyphicon-cog" style="color: rgb(0, 32, 14);"></span>
+                        成绩管理系统
+                    </h1>
+                    <div class="wlc hidden-xs hidden-sm">
+                        {% if sign == 1 %}
+                        <span>{{uname}}同学，欢迎 <a class="link_c" href="{% url 'changepwd' %}">修改密码</a> / <a class="link_c" href="{% url 'login' %}">注销</a></span>
+                        {% endif %}
+                        {% if sign == 2 %}
+                        <span>{{uname}}老师，欢迎 <a class="link_c" href="{% url 'changepwd' %}">修改密码</a> / <a class="link_c" href="{% url 'login' %}">注销</a></span>
+                        {% endif %}
+                        {% if sign == 3 %}
+                        <span>管理员，你好 <a class="link_c" href="{% url 'login' %}">注销</a></span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if sign == 1 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'index' %}"><strong>成绩管理系统</strong></a>
+                    </div>
+                    
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{% url 'index' %}">校园资讯</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'update' u_id %}">个人信息</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'course' %}">课程</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'score' %}">成绩</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'analyze' %}">统计分析</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        {% if sign == 2 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'index' %}"><strong>成绩管理系统</strong></a>
+                    </div>
+                    
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{% url 'index' %}">校园资讯</a>
+                            </li>
+                            <li>
+                                <a href="{% url 't_update' pk=u_id %}">个人信息</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'course' %}">课程</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">成绩<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'score' %}">学生成绩</a></li>
+                                    <li><a href="{% url 't_scoreimport' %}">成绩上传</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{% url 'analyze' %}">统计分析</a>
+                            </li>
+                        </ul>
+                    </div>  
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        {% if sign == 3 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'index' %}"><strong>成绩管理系统</strong></a>
+                    </div>
+                    
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{% url 'index' %}">校园资讯</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'campusinfo' %}">资讯发布</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">查询<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'search_s' %}">学生查询</a></li>
+                                    <li><a href="{% url 'search_t' %}">教师查询</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据导入<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'userimport' %}">用户导入</a></li>
+                                    <li><a href="{% url 'courseimport' %}">课程导入</a></li>
+                                    <li><a href="{% url 'scoreimport' %}">成绩上传</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>           
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+        <div class="content">
+        {% block body %}sdf{% endblock %}
+        </div>
+    </div>  
+    <div><a class="top" href="#top" style="text-decoration: none;word-wrap: break-word;"><img style="width: 52px;height: 52px;background-position: 52px 52px;" src={% static "images/backtop1.png" %}></a></div>
+</body>
+</html>

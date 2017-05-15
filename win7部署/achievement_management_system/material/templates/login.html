@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>登陆</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<link rel="stylesheet" href={% static "css/login-style.css" %} type="text/css" media="all">
+</head>
+<style>
+
+</style>
+<body>
+	<h1>成绩管理系统</h1>
+	<h2>Log in to your Account</h2>
+	<div class="w3layoutscontaineragileits">
+		<form action="" method="post">
+			<input type="text" name="Userame" placeholder="ACCOUNT" required="required" >
+			<input type="password" name="Password" placeholder="PASSWORD" required="required" >
+			<div class="aitssendbuttonw3ls" style="	margin-top: 20px;">
+				<input type="submit" value="LOGIN">
+				<div class="clear"></div>
+				{% if pwd_wrong %}
+				<div style="color: #e7c3c3;margin-top: 30px;">
+					<h4>账号或密码错误，请重试！</h4>
+				</div>
+				{% endif %}
+			</div>
+		</form>
+	</div>
+</body>
+<!-- //Body -->
+
+</html>

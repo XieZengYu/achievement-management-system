@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}个人信息{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div >
+	<div class="page-header" style="color: #555">
+		<h2>个人信息<small>&#12288;&#12288;&#12288;{{uname}}</small></h2>
+	</div>
+		<form class="form-horizontal" action="" enctype="multipart/form-data" method="POST" style="margin-left: 40px;margin-top:20px;">
+			<div class="form-group">
+				<label for="exampleInputName2">性&#12288;&#12288;别:&#12288;</label>
+				{{form.gender}}
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">系别班级:&#12288;</label>
+				{{form.grade}}
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">联系电话:&#12288;</label>
+				{{form.phone_num}}
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">联系地址:&#12288;</label>
+				{{form.address}}
+			</div>
+			<input class="btn btn-default" type="submit" value="修改" style="margin-left: 63px;" name="">
+		</form>	
+	</div>
+{% endblock %}

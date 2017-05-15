@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div>
+		<div class="page-header" style="color: #555">
+			<h2>成绩<small>&#12288;&#12288;&#12288;{{uname}}</small></h2>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-hover table-bordered">
+			{% if sign == 1 %}
+				<thead>
+					<tr>
+						<th>
+							课程名称
+						</th>
+						<th>
+							课程成绩
+						</th>
+						<th>
+							课程学分
+						</th>
+						<th>
+							所获学分
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in score %}
+					<tr>
+						{% for v in i %}
+						<td>
+							{{v}}
+						</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			{% else %}
+				<thead>
+					<tr>
+						<th>
+							课程名称
+						</th>
+						<th>
+							年级班级
+						</th>
+						<th>
+							学生
+						</th>
+						<th>
+							成绩
+						</th>
+						<th>
+							学分
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in score %}
+						{% for s in i %}
+							{% for l in s %}
+							<tr>
+								{% for w in l %}
+								<td>
+									{{w}}
+								</td>
+								{% endfor %}
+							</tr>
+							{% endfor %}
+						{% endfor %}
+					{% endfor %}
+				</tbody>
+			{% endif %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

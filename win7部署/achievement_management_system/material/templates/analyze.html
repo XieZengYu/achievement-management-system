@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block body %}
+	<div>
+		<div class="page-header" style="color: #555">
+			<h2>统计分析<small>&#12288;&#12288;&#12288;{{uname}}</small></h2>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-hover table-bordered">
+			{% if sign == 1 %}
+				<thead>
+					<tr>
+						<th>
+							课程名称
+						</th>
+						<th>
+							课程成绩
+						</th>
+						<th>
+							班级排名
+						</th>
+						<th>
+							评价
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for i in analyze %}
+					{% if i.2 < '60' %}
+					<tr class="danger">
+						<td>
+							{{i.1}}
+						</td>
+						<td>
+							{{i.2}}
+						</td>
+						<td>
+							{{i.3}}
+						</td>
+						<td>
+							差
+						</td>
+					</tr>
+					{% endif %}
+					{% if i.2 >= '60' and i.2 < '70' %}
+					<tr class="warning">
+						<td>
+							{{i.1}}
+						</td>
+						<td>
+							{{i.2}}
+						</td>
+						<td>
+							{{i.3}}
+						</td>
+						<td>
+							中
+						</td>
+					</tr>
+					{% endif %}
+					{% if i.2 >= '70' and i.2 < '85' %}
+					<tr class="info">
+						<td>
+							{{i.1}}
+						</td>
+						<td>
+							{{i.2}}
+						</td>
+						<td>
+							{{i.3}}
+						</td>
+						<td>
+							良
+						</td>
+					</tr>
+					{% endif %}
+					{% if i.2 >= '85' %}
+					<tr class="success">
+						<td>
+							{{i.1}}
+						</td>
+						<td>
+							{{i.2}}
+						</td>
+						<td>
+							{{i.3}}
+						</td>
+						<td>
+							优
+						</td>
+					</tr>
+					{% endif %}
+				{% endfor %}
+				</tbody>
+			{% else %}
+				<thead>
+					<tr>
+						<th>
+							课程名称
+						</th>
+						<th>
+							年级班级
+						</th>
+						<th>
+							学生
+						</th>
+						<th>
+							成绩
+						</th>
+						<th>
+							班级排名
+						</th>
+						<th>
+							评价
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in analyze %}
+						{% for s in i %}
+							{% for l in s %}
+								{% if l.4 < '60' %}
+								<tr class="danger">
+									<td>
+										{{l.1}}
+									</td>
+									<td>
+										{{l.2}}
+									</td>
+									<td>
+										{{l.3}}
+									</td>
+									<td>
+										{{l.4}}
+									</td>
+									<td>
+										{{l.5}}
+									</td>
+									<td>
+										差
+									</td>
+								</tr>
+								{% endif %}
+								{% if l.4 >= '60' and l.4 < '70' %}
+								<tr class="warning">
+									<td>
+										{{l.1}}
+									</td>
+									<td>
+										{{l.2}}
+									</td>
+									<td>
+										{{l.3}}
+									</td>
+									<td>
+										{{l.4}}
+									</td>
+									<td>
+										{{l.5}}
+									</td>
+									<td>
+										中
+									</td>
+								</tr>
+								{% endif %}
+								{% if l.4 >= '70' and l.4 < '85' %}
+								<tr class="info">
+									<td>
+										{{l.1}}
+									</td>
+									<td>
+										{{l.2}}
+									</td>
+									<td>
+										{{l.3}}
+									</td>
+									<td>
+										{{l.4}}
+									</td>
+									<td>
+										{{l.5}}
+									</td>
+									<td>
+										良
+									</td>
+								</tr>
+								{% endif %}
+								{% if l.4 >= '85' %}
+								<tr class="success">
+									<td>
+										{{l.1}}
+									</td>
+									<td>
+										{{l.2}}
+									</td>
+									<td>
+										{{l.3}}
+									</td>
+									<td>
+										{{l.4}}
+									</td>
+									<td>
+										{{l.5}}
+									</td>
+									<td>
+										优
+									</td>
+								</tr>
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+					{% endfor %}
+				</tbody>
+			{% endif %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

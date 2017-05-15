@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}用户导入{% endblock %}
+
+{% block css %}
+
+.up_btn{
+	float:left;
+	padding:10px;
+	width:33%;
+	border:#ccc 1px solid;
+	text-align:center;
+	border-radius:10px;
+	font-size:18px;
+	color:#777;
+}
+.up_btn:hover{
+	background:#ccc;
+	color:#fff;
+}
+.clear{
+	clear:both;
+}
+.formstl{
+	margin-top:20px;
+	margin-left:15px;
+}
+#juzhong{
+	width:272px;
+	margin:100px auto 50px auto;
+	padding:20px 20px 20px 20px;
+}
+{% endblock %}
+
+{% block body %}
+	
+	<div class="up_nav">
+		<a href="{% url 'userimport' %}"><div class="up_btn" style="background:#ccc;
+	color:#fff;">用户导入</div></a>
+		<div style="width: 0.5%;height: 20px;float:left;"></div>
+		<a href="{% url 'courseimport' %}"><div class="up_btn">课程导入</div></a>
+		<div style="width: 0.5%;height: 20px;float:left;"></div>
+		<a href="{% url 'scoreimport' %}"><div class="up_btn">成绩导入</div></a>
+		<div class="clear"></div>
+	</div>
+
+	<div id="juzhong" class="formstl form-group">
+		<form id="userimp" action="" method="post" enctype="multipart/form-data">
+			<label class="radio-inline" style="margin-left: 25px;">
+				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="true"> 学生导入
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 教师导入
+			</label>
+			<input id="useri" type="file" name="xlsfile" style="margin-top: 15px;" />
+			<input class="btn btn-default" type="submit" value="上传文件" style="margin-top: 25px;margin-left: 75px;" />
+		</form>
+		{% if u_id == 404 %}
+			<div style="margin-left: 75px;margin-top: 30px;">
+				<p style="font-size: 20px;color: red;">数据有误！</p>
+			</div>
+		{% endif %}
+		{% if sign1 %}
+			<div style="margin-left: 75px;margin-top: 30px;">
+				<p style="font-size: 20px;color: #337ab7">上传成功！</p>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
